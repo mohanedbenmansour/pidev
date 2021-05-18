@@ -27,6 +27,8 @@ public class ShopForm extends Form{
  Button btnAddCategory = new Button("add Category");  
  Button btnViewCategories = new Button("view Categories");        
 
+ btnAddProduct.addActionListener(e-> new addProductForm().show());
+ 
 addAll(btnViewShop,btnAddProduct,btnViewProducts,btnViewOrders,btnAddCategory,btnViewCategories);
 
    
