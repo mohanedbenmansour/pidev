@@ -13,9 +13,18 @@ public class Product {
    private int id;
     private String name, description ,price,image;
     private CategoryProduct category;
-    
+
+   
 public CategoryProduct getCategory() {
         return category;
+    }
+
+    public Product(String name, String description, String price, String image, CategoryProduct category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.image = image;
+        this.category = category;
     }
     public int getId() {
         return id;

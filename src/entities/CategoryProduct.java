@@ -13,6 +13,10 @@ public class CategoryProduct {
     private int id;
     private String name;
 
+    public CategoryProduct(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
