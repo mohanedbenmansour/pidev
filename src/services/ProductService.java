@@ -20,7 +20,7 @@ public class ProductService {
    public boolean resultOK;
    
    public boolean addProduct(Product p){
-       String url=Statics.BASE_URL+"/products/"+p.getName()+"/"+p.getDescription()+p.getImage()+p.getPrice();
+       String url=Statics.BASE_URL+"product/new?"+"name="+p.getName()+"&description="+p.getDescription()+"&image="+p.getImage()+"&price="+p.getPrice();
        ConnectionRequest req=new ConnectionRequest(url);
        
        req.addResponseListener(new ActionListener<NetworkEvent>(){
