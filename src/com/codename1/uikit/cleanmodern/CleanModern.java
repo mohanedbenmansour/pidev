@@ -51,7 +51,7 @@ public class CleanModern {
             current.show();
             return;
         }
-        new SignUpForm(theme).show();
+        new SignInForm(theme).show();
     }
 
     public void stop() {

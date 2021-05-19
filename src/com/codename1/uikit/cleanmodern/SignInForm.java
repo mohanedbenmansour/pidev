@@ -22,6 +22,7 @@ package com.codename1.uikit.cleanmodern;
 import com.codename1.components.FloatingHint;
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
@@ -29,6 +30,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.util.Resources;
+import services.UtilisateurService;
 
 /**
  * Sign in UI
@@ -71,7 +73,25 @@ public class SignInForm extends BaseForm {
         content.setScrollableY(true);
         add(BorderLayout.SOUTH, content);
         signIn.requestFocus();
-        signIn.addActionListener(e -> new NewsfeedForm(res).show());
+        signIn.addActionListener(e -> {
+            
+            UtilisateurService.getInstance().SignIn(username.getText(), password.getText());
+            if (UtilisateurService.returnTypeSI.equals("faileduser")) {
+                Dialog.show("failed", "wrong username or password", "OK", null);
+                
+                System.out.println("returntypeSiiii"+UtilisateurService.returnTypeSI);
+            }
+            if (UtilisateurService.returnTypeSI.equals("failedp")) {
+                Dialog.show("failed", "wrong username or password", "OK", null);
+                
+                System.out.println("returntypeSiiii"+UtilisateurService.returnTypeSI);
+            }
+            else if (UtilisateurService.returnTypeSI.equals("success")){
+                Dialog.show("SUCCESS", "WELCOM", "OK", null);
+                new ProfileForm(res).show();
+                
+            }
+        });
     }
     
 }

@@ -20,8 +20,10 @@
 package com.codename1.uikit.cleanmodern;
 
 import com.codename1.components.ScaleImageLabel;
+import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
 import com.codename1.ui.Component;
+import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -34,6 +36,7 @@ import com.codename1.ui.layouts.GridLayout;
 import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Style;
 import com.codename1.ui.util.Resources;
+import services.UtilisateurService;
 
 /**
  * The user profile form
@@ -52,7 +55,31 @@ public class ProfileForm extends BaseForm {
         
         super.addSideMenu(res);
         
-        tb.addSearchCommand(e -> {});
+//        tb.addSearchCommand(e -> {});
+        TextField usname=new TextField("","search");
+        
+        Button search =new Button("search");
+        
+        addAll(usname,search);
+        
+        search.requestFocus();
+        search.addActionListener(e -> {
+            
+            UtilisateurService.getInstance().search(usname.getText());
+            if (UtilisateurService.returnTypeSI.equals("faileduser")) {
+                Dialog.show("failed", "wrong username", "OK", null);
+                
+                System.out.println("returntypeSiiii"+UtilisateurService.returnTypeSI);
+            }
+            
+            else if (UtilisateurService.returnTypeSI.equals("success")){
+                Dialog.show("SUCCESS", "WELCOM", "OK", null);
+                new ProfileForm(res).show();
+                
+            }
+        });
+        
+        
         
         
         Image img = res.getImage("profile-background.jpg");
@@ -80,17 +107,41 @@ public class ProfileForm extends BaseForm {
                 )
         ));
 
-        TextField username = new TextField("sandeep");
+        TextField username = new TextField(SessionManager.getUserName());
         username.setUIID("TextFieldBlack");
         addStringValue("Username", username);
 
-        TextField email = new TextField("sandeep@gmail.com", "E-Mail", 20, TextField.EMAILADDR);
+        TextField email = new TextField(SessionManager.getEmail(), "E-Mail", 20, TextField.EMAILADDR);
         email.setUIID("TextFieldBlack");
         addStringValue("E-Mail", email);
         
-        TextField password = new TextField("sandeep", "Password", 20, TextField.PASSWORD);
+        TextField password = new TextField(SessionManager.getPassowrd(), "Password", 20, TextField.PASSWORD);
         password.setUIID("TextFieldBlack");
         addStringValue("Password", password);
+        
+        TextField phoneNumber = new TextField(SessionManager.getPhone_number());
+        phoneNumber.setUIID("TextFieldBlack");
+        addStringValue("Phone Number", phoneNumber);
+        
+        TextField nom = new TextField(SessionManager.getNom());
+        nom.setUIID("TextFieldBlack");
+        addStringValue("nom", nom);
+        
+        TextField prenom = new TextField(SessionManager.getPrenom());
+        prenom.setUIID("TextFieldBlack");
+        addStringValue("prenom", prenom);
+        
+        TextField facebookProfil = new TextField(SessionManager.getFacebookProfil());
+        facebookProfil.setUIID("TextFieldBlack");
+        addStringValue("facebook profil", facebookProfil);
+        
+        TextField twitchProfil = new TextField(SessionManager.getTwitch_profil());
+        twitchProfil.setUIID("TextFieldBlack");
+        addStringValue("twitch", twitchProfil);
+        
+        TextField youtubeChannel = new TextField(SessionManager.getYoutube_channel());
+        youtubeChannel.setUIID("TextFieldBlack");
+        addStringValue("lien youtube", youtubeChannel);
 
         CheckBox cb1 = CheckBox.createToggle(res.getImage("on-off-off.png"));
         cb1.setUIID("Label");
