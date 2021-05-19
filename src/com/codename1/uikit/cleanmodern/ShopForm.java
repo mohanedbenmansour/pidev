@@ -9,13 +9,14 @@ import com.codename1.ui.Button;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.util.Resources;
 
 /**
  *
  * @author mohan
  */
 public class ShopForm extends Form{
-    public ShopForm(){
+    public ShopForm(Resources res){
         setTitle("shop");
         setLayout(BoxLayout.y());
         
@@ -23,14 +24,12 @@ public class ShopForm extends Form{
  Button btnViewShop = new Button("View Shop");  
  Button btnAddProduct = new Button("add Product");        
  Button btnViewProducts = new Button("View Products");        
- Button btnViewOrders = new Button("View orders"); 
- Button btnAddCategory = new Button("add Category");  
- Button btnViewCategories = new Button("view Categories");        
+   
 
  btnAddProduct.addActionListener(e-> new addProductForm().show());
-  btnAddCategory.addActionListener(e-> new addCategoryProductForm().show());
+  btnViewShop.addActionListener(e-> new ListProductForm(res).show());
 
-addAll(btnViewShop,btnAddProduct,btnViewProducts,btnViewOrders,btnAddCategory,btnViewCategories);
+addAll(btnViewShop,btnAddProduct);
 
    
     }

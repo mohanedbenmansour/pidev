@@ -24,7 +24,6 @@ public CategoryProduct getCategory() {
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 89 * hash + this.id;
         hash = 89 * hash + Objects.hashCode(this.name);
         hash = 89 * hash + Objects.hashCode(this.description);
         hash = 89 * hash + Objects.hashCode(this.price);
@@ -45,9 +44,7 @@ public CategoryProduct getCategory() {
             return false;
         }
         final Product other = (Product) obj;
-        if (this.id != other.id) {
-            return false;
-        }
+        
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
@@ -76,7 +73,7 @@ public CategoryProduct getCategory() {
         this.image = image;
         this.category = category;
     }
-    public int getId() {
+    public double getId() {
         return id;
     }
 
@@ -96,8 +93,8 @@ public CategoryProduct getCategory() {
         return image;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId(double id) {
+        this.id = (int) id;
     }
 
     public void setName(String name) {

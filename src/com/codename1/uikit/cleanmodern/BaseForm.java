@@ -84,10 +84,10 @@ public class BaseForm extends Form {
         
         tb.addMaterialCommandToSideMenu("Newsfeed", FontImage.MATERIAL_UPDATE, e -> new NewsfeedForm(res).show());
         tb.addMaterialCommandToSideMenu("Profile", FontImage.MATERIAL_SETTINGS, e -> new ProfileForm(res).show());
-        tb.addMaterialCommandToSideMenu("shop", FontImage.MATERIAL_ADD_SHOPPING_CART, e -> new ShopForm().show());
-        tb.addMaterialCommandToSideMenu("event", FontImage.MATERIAL_SETTINGS, e -> new ShopForm().show());
-        tb.addMaterialCommandToSideMenu("gamers", FontImage.MATERIAL_SETTINGS, e -> new ShopForm().show());
-        tb.addMaterialCommandToSideMenu("tournoi", FontImage.MATERIAL_SETTINGS, e -> new ShopForm().show());
+        tb.addMaterialCommandToSideMenu("shop", FontImage.MATERIAL_ADD_SHOPPING_CART, e -> new ShopForm(res).show());
+        tb.addMaterialCommandToSideMenu("event", FontImage.MATERIAL_SETTINGS, e -> new ShopForm(res).show());
+        tb.addMaterialCommandToSideMenu("gamers", FontImage.MATERIAL_SETTINGS, e -> new ShopForm(res).show());
+        tb.addMaterialCommandToSideMenu("tournoi", FontImage.MATERIAL_SETTINGS, e -> new ShopForm(res).show());
 
         tb.addMaterialCommandToSideMenu("Logout", FontImage.MATERIAL_EXIT_TO_APP, e -> new WalkthruForm(res).show());
     }

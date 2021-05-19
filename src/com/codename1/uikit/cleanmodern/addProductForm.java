@@ -32,8 +32,10 @@ public class addProductForm extends Form {
         setTitle("add new product");
         setLayout(BoxLayout.y());
         TextField name=new TextField("","name");
+        name.animate();
         TextField description=new TextField("","description");
         TextField price=new TextField("","price");
+        
         Button capture=new Button("capture");
         Label image=new Label("image");
         Button valider=new Button("valider");

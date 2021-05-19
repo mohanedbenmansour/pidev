@@ -10,8 +10,20 @@ package entities;
  * @author mohan
  */
 public class Order {
-    int id,userId,zipcode,userPhone,totalPrice;
-    String userAdress,checkoutDate,status,city,state;
+    int id,userId,zipcode,userPhone;
+    String userAdress,checkoutDate,status,city,state,totalPrice;
+
+    public Order(int userId, int zipcode, int userPhone, String totalPrice, String userAdress, String checkoutDate, String status, String city, String state) {
+        this.userId = userId;
+        this.zipcode = zipcode;
+        this.userPhone = userPhone;
+        this.totalPrice = totalPrice;
+        this.userAdress = userAdress;
+        this.checkoutDate = checkoutDate;
+        this.status = status;
+        this.city = city;
+        this.state = state;
+    }
 
     public int getId() {
         return id;
@@ -45,11 +57,11 @@ public class Order {
         this.userPhone = userPhone;
     }
 
-    public int getTotalPrice() {
+    public String getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(int totalPrice) {
+    public void setTotalPrice(String totalPrice) {
         this.totalPrice = totalPrice;
     }
 

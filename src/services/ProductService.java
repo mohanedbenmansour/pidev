@@ -10,11 +10,13 @@ import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
-import com.codename1.ui.List;
 import com.codename1.ui.events.ActionListener;
+import entities.CategoryProduct;
 import entities.Product;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import java.util.Map;
 import utils.Statics;
 
@@ -43,7 +45,7 @@ public class ProductService {
    public boolean resultOK;
    
    public boolean addProduct(Product p){
-       String url=Statics.BASE_URL+"product/new?"+"name="+p.getName()+"&description="+p.getDescription()+"&image="+p.getImage()+"&price="+p.getPrice();
+       String url=Statics.BASE_URL+"product/api/new?"+"name="+p.getName()+"&description="+p.getDescription()+"&image="+p.getImage()+"&price="+p.getPrice();
        ConnectionRequest req=new ConnectionRequest(url);
        
        req.addResponseListener(new ActionListener<NetworkEvent>(){
@@ -62,14 +64,42 @@ resultOK=req.getResponseCode()==200;
    
    public ArrayList<Product> parseProducts(String jsonText) throws IOException{
        try{
+
    products=new ArrayList<>();
        JSONParser j =new JSONParser();
        Map <String,Object> productListJson=j.parseJSON(new CharArrayReader(jsonText.toCharArray()));
+       System.out.println(productListJson);
+       List<Map<String,Object>> list =(List<Map<String,Object>>)productListJson.get("root");
        
-       List<Map<String,Object>> List =(List<Map<String,Object>>)productListJson.get("root");
+
+
+       for(Map<String,Object> obj : list){
+
+           System.out.println(obj);
+           
+
+
+
+    Product p=new Product();
+             p.setName(obj.get("name").toString());
+
+             p.setImage(obj.get("image").toString());
+                                     System.out.println(p);
+
+             p.setPrice(obj.get("price").toString());
+                                     System.out.println(p);
+
+             p.setDescription(obj.get("description").toString());
+                                     System.out.println(p);
+                                                  p.setId((double) obj.get("id"));
+
+
+             CategoryProduct c =new CategoryProduct("test");
+             p.setCategory(c);
+                        System.out.println(p);
+
+             products.add(p);
        
-       for(Map<String,Object>: List){
-       Product p=new Product();
        }
        }catch(IOException ex){
        
@@ -80,6 +110,33 @@ resultOK=req.getResponseCode()==200;
        
        return products;
    }
+   
+   public ArrayList<Product> getAllProducts(){
+        String url = Statics.BASE_URL+"product/api/sho";
+               ConnectionRequest req=new ConnectionRequest(url);
+
+        req.setUrl(url);
+        req.setPost(false);
+        
+            req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+
+                try {
+
+                                        System.out.println(req.getResponseData());
+
+                    products = parseProducts(new String(req.getResponseData()));
+                    
+                } catch (IOException ex) {
+                }
+                    req.removeResponseListener(this);
+                
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return products;
+    }
     
     
 }
