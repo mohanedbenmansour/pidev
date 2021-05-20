@@ -35,7 +35,10 @@ public class addProductForm extends Form {
         name.animate();
         TextField description=new TextField("","description");
         TextField price=new TextField("","price");
-        
+   
+        name.setUIID("TextFieldBlack");
+        description.setUIID("TextFieldBlack");
+        price.setUIID("TextFieldBlack");
         Button capture=new Button("capture");
         Label image=new Label("image");
         Button valider=new Button("valider");

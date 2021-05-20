@@ -22,14 +22,14 @@ public class ShopForm extends Form{
         
         add(new Label("choose an option"));
  Button btnViewShop = new Button("View Shop");  
- Button btnAddProduct = new Button("add Product");        
+ //Button btnAddProduct = new Button("add Product");        
  Button btnViewProducts = new Button("View Products");        
    
 
- btnAddProduct.addActionListener(e-> new addProductForm().show());
+// btnAddProduct.addActionListener(e-> new addProductForm().show());
   btnViewShop.addActionListener(e-> new ListProductForm(res).show());
 
-addAll(btnViewShop,btnAddProduct);
+addAll(btnViewShop);
 
    
     }

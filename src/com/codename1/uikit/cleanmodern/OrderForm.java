@@ -38,7 +38,14 @@ public class OrderForm extends Form{
         TextField zipcode=new TextField("","zipcode");
 
         Label prix=new Label("prix");
-
+prix.setText("total price: "+price);
+        address.setUIID("TextFieldBlack");
+        phone.setUIID("TextFieldBlack");
+        status.setUIID("TextFieldBlack");
+        state.setUIID("TextFieldBlack");
+        zipcode.setUIID("TextFieldBlack");
+        prix.setUIID("TextFieldBlack");
+        
         Button valider=new Button("valider");
 
   valider.addActionListener(new ActionListener(){
